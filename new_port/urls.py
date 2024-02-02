@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from base import views
+from new_port import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -44,7 +46,7 @@ urlpatterns = [
     path('save_role', views.save_roles),
     path('delete_role', views.delete_role),
     path('check_pass', views.check_pass),
-    path('login', views.login_to_edit),
+    path('login', views.login_to_edit, name="login"),
 
 
     path('profile_pic/list/', views.profile_pic_list, name='profile_pic_list'),
@@ -54,3 +56,11 @@ urlpatterns = [
     path('profile_pic/<uuid:pk>/delete/', views.profile_pic_delete, name='profile_pic_delete'),
 
 ]
+
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
+    
+    
