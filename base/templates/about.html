@@ -60,15 +60,18 @@
 							</div>
 							<div class="col-md-6 d-flex align-items-center">
 								<div class="text px-4 pt-5 pt-md-0 px-md-4 pr-md-5 ftco-animate">
-									<h2 class="mb-4">Hello! I'm<span>NagiPragalathan</span></h2>
+									<h2 class="mb-4">Hello! I'm<span>&nbsp;NagiPragalathan N</span></h2>
 									<hr style="background: #f5aa6a;">
 									<p style="color:#ffe8d2">Web3 Hackathon 🏆🥇 × {{ hack_detials.1 }} | Open source contributor | gryffindors | Freelancer | JEC"24</p>
 									<hr style="background: #f5aa6a;">
-									<p> Hi, I'm Nagi Pragalathan, a passionate Computer Engineering major at Jaya Engineering College. I excel in programming, problem-solving, and teamwork, with notable projects in blockchain, web development, and Python modules. Let's connect on LinkedIn to explore opportunities!</p>
+									<p>Enthusiastic Full Stack Developer with a solid foundation in programming, development, large language models (LLM). Proven success in hackathons and hands-on experience in both frontend and backend development. Proficient in a variety of languages, frameworks, and tools, and passionate about Web3 and blockchain technologies. Recognized for excellent problem-solving, language proficiency, and teamwork skills. Committed to continuous learning and contributing to the open-source community.</p>
 
 									<hr style="background: #5d5d5d;">
 
 									<div style="display: flex; justify-content: space-around;">
+										<a href="https://linktr.ee/Nagipragalathan" target="_blank">
+											<img src="https://asset.brandfetch.io/id_tNIm05N/idJgd2UeGc.png" alt="Twitter" height="30" width="40" />
+										</a>
 										<a href="https://twitter.com/nagipragalathan" target="_blank">
 											<img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="Twitter" height="30" width="40" />
 										</a>
@@ -248,43 +251,42 @@
 						<hr style="background: #333333; margin-top: 36px;">
 						<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 30px; color: #fff;">
 							<h2 style="margin-bottom: 30px; font-size: 31px; text-align: center; color: #cacaca; font-family: cursive; border-bottom: 2px solid #f3c623;">Hackathons</h2>
+							
+							<!-- Dropdown for filtering results -->
+							<select id="statusFilter" onchange="filterResults()" style="margin-bottom: 20px; background-color: #000; color: #fff; border: 1px solid #fff; padding: 5px; cursor: pointer;">
+								<option value="All">All</option>
+								<option value="Win">Win</option>
+								<option value="Tried">Tried</option>
+							</select>
+							
 						</div>
-						<section style="background-color: #111 !important; padding: 20px;">
-							<div class="" style="background-color: #111 !important; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 10px !important;">
+						
+						<section style="background-color: #111; padding: 20px;">
+							<div id="cardsContainer" style="background-color: #111; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 10px;">
 								{% for datas in hackathon %}
 								<!-- Card 1 -->
-								<a href="#" class="w-[30rem] border-2 border-b-4 border-gray-200 rounded-xl hover:bg-gray-50" style="text-decoration: none; color: #fff; background-color: #222;">
+								<a href="#" class="hackathonCard w-full md:w-[30rem] border-2 border-b-4 border-gray-200 rounded-xl hover:bg-gray-50" style="text-decoration: none; color: #fff; background-color: #222; transition: background-color 0.3s; margin-bottom: 20px;" data-status="{{ datas.5 }}">
 									<!-- Badge -->
-									<p class="bg-sky-500 w-fit px-4 py-1 text-sm font-bold text-white rounded-tl-lg rounded-br-xl"> FEATURED
-									</p>
-									<div class="grid grid-cols-6 p-5 gap-y-2">
+									{% comment %} <p class="bg-sky-500 w-fit px-4 py-1 text-sm font-bold text-white rounded-tl-lg rounded-br-xl">FEATURED</p> {% endcomment %}
+									<div class="grid grid-cols-1 md:grid-cols-6 p-5 gap-y-4 gap-x-4">
 										<!-- Profile Picture -->
-										<div>
-											<img src="{{ datas.0 }}" class="max-w-16 max-h-16 rounded-full" style="display: block;" />
+										<div class="md:col-span-1">
+											<img src="{{ datas.0 }}" class="mx-auto" style="max-width: 100%; height: auto;" />
 										</div>
 										<!-- Description -->
 										<div class="col-span-5 md:col-span-4 ml-4">
-						
-											<p class="text-sky-500 font-bold text-xs" style="margin-bottom: 0; color: #fff;"> {{ datas.1 }} </p>
-						
-											<p class="text-gray-600 font-bold" style="margin-bottom: 0; color: #fff;"> {{ datas.2 }} </p>
-						
-											<p class="text-gray-400" style="margin-bottom: 0; color: #fff;">{{ datas.3 }}</p>
-						
-											<p class="text-gray-400" style="margin-bottom: 0; color: #fff;"> {{ datas.4 }} </p>
-						
+											<p class="text-sky-500 font-bold text-xs" style="text-align: justify;">{{ datas.1 }}</p>
+											<p class="text-gray-600 font-bold" style="text-align: justify;">{{ datas.2 }}</p>
+											<p class="text-gray-400" style="text-align: justify;">Date: {{ datas.3 }}</p>
+											<p class="text-gray-400" style="text-align: justify;">{{ datas.4 }}</p>
 										</div>
-						
 										<!-- Price -->
-										<div class="flex col-start-2 ml-4 md:col-start-auto md:ml-0 md:justify-end">
-											<p class="rounded-lg text-sky-500 font-bold bg-sky-100  py-1 px-3 text-sm w-fit h-fit" style="margin-bottom: 0; color: #fff;">{{ datas.5 }}</p>
+										<div class="flex col-start-2 md:col-start-auto md:ml-0 md:justify-end">
+											<p class="rounded-lg text-white font-bold py-1 px-3 text-sm" style="background-color: #007BFF; width: 100px; height: 30px; display: flex; align-items: center; justify-content: center;">{{ datas.5 }}</p>
 										</div>
-						
 									</div>
-						
 								</a>
 								{% endfor %}
-						
 							</div>
 						</section>
 						<hr style="background: #333333; margin-top: 36px;">
@@ -348,6 +350,19 @@
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 		<script src=" {% static 'js/google-map.js' %} "></script>
 		<script src=" {% static 'js/main.js' %} "></script>
-		
+		<script>
+			function filterResults() {
+				var filterValue = document.getElementById('statusFilter').value;
+				var cards = document.querySelectorAll('.hackathonCard');
+				
+				cards.forEach(card => {
+					if (filterValue === 'All' || card.getAttribute('data-status') === filterValue) {
+						card.style.display = '';
+					} else {
+						card.style.display = 'none';
+					}
+				});
+			}
+		</script>
 	</body>
 	</html>
